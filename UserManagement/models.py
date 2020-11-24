@@ -9,7 +9,7 @@ class Profile(models.Model):
     Mobile_number = models.CharField(max_length=30)
     Profile_Picture = models.ImageField(upload_to='users/profile_pictures', blank=True, null=True)
     Email_address = models.CharField(max_length=100,blank=True, null=True)
-    Date_of_Birth = models.DateField()
+    Date_of_Birth = models.CharField(max_length=100,blank=True, null=True)
     GENDER_MALE = 0
     GENDER_FEMALE = 1
     GENDER_OTHER = 3
@@ -17,10 +17,10 @@ class Profile(models.Model):
     Gender = models.IntegerField(choices=GENDER_CHOICES)
     Billing_address = models.TextField(max_length=500)
 
-    Username = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.Username.username
+        return self.user.username
 
 
 

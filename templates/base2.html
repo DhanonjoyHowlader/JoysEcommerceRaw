@@ -227,6 +227,8 @@
                   <a style="color:red;"><i>{{user.username}}</i></a>
               <ul>
               <li><a href="{% url 'show_profile' %}">My Profile</a></li>
+              <a href="{% url 'create_profile' %}">Set up/Edit Profile</a>
+              <li><a href="{% url 'password_change' %}">Change Password</a></li>
               <li><a href="{% url 'my-orders' %}">My Orders</a></li>
             </ul>
               </li>

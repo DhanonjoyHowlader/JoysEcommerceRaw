@@ -1,7 +1,9 @@
 {% extends 'base2.html' %}
 
 {% block content  %}
-
+<section>
+<div style="padding-left:90px;padding-right:90px " class="container">
+        <div style="padding:50px;border-radius: 20px" class="card shadow">
 
     {% if order_status == True %}
 
@@ -156,12 +158,19 @@
                 </div>
             {% endif %}
         {% endfor %}
+        <br>
+        <br>
 
     <h2>Total: {{ total }}</h2>
     {% else %}
+
         <h2>Total: 0.00</h2>
     {% endif %}
 
+  </div>
+
+    </div>
+</section>
 
 
 {% endblock content %}

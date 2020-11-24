@@ -59,7 +59,7 @@ def showDetails(request, product_id):
 @login_required
 def view_cart(request):
 
-    cart = Cart.objects.get(Username=request.user)
+    cart = Cart.objects.get(user=request.user)
 
 
     total = 0
@@ -77,7 +77,7 @@ def view_cart(request):
 def update_cart(request, product_id):
 
     product = get_object_or_404(Product, id=product_id)
-    cart = get_object_or_404(Cart, Username=request.user)
+    cart = get_object_or_404(Cart, user=request.user)
 
     cart.product.add(product)
     cart.save()
@@ -88,7 +88,7 @@ def update_cart(request, product_id):
 def delete_from_cart(request, product_id):
 
     product = get_object_or_404(Product, id=product_id)
-    cart = Cart.objects.get(Username=request.user)
+    cart = Cart.objects.get(user=request.user)
 
     cart.product.remove(product)
     cart.save()
@@ -99,13 +99,13 @@ def delete_from_cart(request, product_id):
 @login_required
 def my_orders(request):
 
-    orders = Order(Username=request.user)
+    orders = Order(user=request.user)
 
     try:
-        orders = Order.objects.filter(Username=request.user)
+        orders = Order.objects.filter(user=request.user)
         order_status = True
     except orders.DoesNotExist:
-        orders = Order(Username=request.user)
+        orders = Order(user=request.user)
         order_status = False
 
     total = 0.0
@@ -125,10 +125,10 @@ def my_orders(request):
 @login_required
 def make_order(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    order = Order(Username=request.user, product=product)
+    order = Order(user=request.user, product=product)
     order.save()
 
-    cart = Cart.objects.get(Username=request.user)
+    cart = Cart.objects.get(user=request.user)
     cart.product.remove(product)
     cart.save()
 
@@ -145,12 +145,12 @@ def test(request):
 
 def bkash_order(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    order = Order(Username=request.user, product=product)
+    order = Order(user=request.user, product=product)
     order.transaction_id = request.POST['transaction_id']
     order.payment_options  = 'Bkash'
     order.save()
 
-    cart = Cart.objects.get(Username=request.user)
+    cart = Cart.objects.get(user=request.user)
     cart.product.remove(product)
     cart.save()
 
@@ -165,7 +165,7 @@ def review_after_complete(request, product_id):
 
     searched_product = get_object_or_404(Product, id=product_id)
 
-    user_list = searched_product.reviews.filter(Username=request.user)
+    user_list = searched_product.reviews.filter(user=request.user)
     print(user_list, len(user_list))
     if len(user_list) != 0:
         already_reviewed = True

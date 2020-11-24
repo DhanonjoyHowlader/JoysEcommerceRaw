@@ -49,7 +49,7 @@ def CreateProfile(request):
         profile_object.save()
         return redirect('/')
     try:
-        value = Profile.objects.get(Username=request.user)
+        value = Profile.objects.get(user=request.user)
     except Profile.DoesNotExist:
         value = '0'
     context = {
@@ -61,7 +61,7 @@ def CreateProfile(request):
 
 def ViewProfile(request):
     try:
-        profile = Profile.objects.get(Username=request.user)
+        profile = Profile.objects.get(user=request.user)
     except Profile.DoesNotExist:
         profile = print("Please complete your Profile to view")
     context = {

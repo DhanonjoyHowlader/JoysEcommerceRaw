@@ -1,11 +1,9 @@
 {% extends 'base2.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<br>
-<div class="container">
-    <div class="row mx-auto" >
-        <div class="col mx-auto" >
-            <div class="col d-flex justify-content-center"></div>
+    <section>
+<div style="padding-left:200px;padding-right:200px " class="container">
+    <div style="padding:50px;border-radius: 20px" class="card shadow">
                  <form  method="POST" enctype="multipart/form-data">
                  {% csrf_token %}
                  {% if val == '0' %}
@@ -30,8 +28,8 @@
                 </form>
             </div>
         </div>
-    </div>
-</div>            
+    </section>
+
 {% endblock %}
 
 

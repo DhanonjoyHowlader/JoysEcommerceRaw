@@ -15,10 +15,10 @@ class Review(models.Model):
         Rating = models.CharField(max_length=10, choices=RATING_OPTIONS, default='4')
         Comment = models.TextField(blank=True, null=True)
 
-        Username = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+        user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
         def __str__(self):
-            return self.Username.username + " - " + self.Rating
+            return self.user.username + " - " + self.Rating
 
 
 class Product(models.Model):
@@ -41,18 +41,18 @@ class Product(models.Model):
 
 
 class Cart(models.Model):
-    Username = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ManyToManyField(Product)
     created_date = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated_date = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     def __str__(self):
-        return self.Username.username
+        return self.user.username
 
 
 class Order(models.Model):
 
-    Username = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
 
     created_date = models.DateTimeField(auto_now_add=True, auto_now=False)
@@ -78,7 +78,7 @@ class Order(models.Model):
     transaction_id = models.CharField(max_length=30, null =True, blank=True)
 
     def __str__(self):
-        return self.Username.username + "-" + self.product.name + "-" + self.status
+        return self.user.username + "-" + self.product.name + "-" + self.status
 
 
 class Slider(models.Model):

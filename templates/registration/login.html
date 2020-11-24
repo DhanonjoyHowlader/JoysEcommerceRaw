@@ -1,11 +1,21 @@
 {% extends 'base2.html' %}
 
+{% load crispy_forms_tags %}
 {% block content %}
+    <section>
+    <div style="padding-left:200px;padding-right:200px " class="container">
+        <div style="padding:50px;border-radius: 20px" class="card shadow">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary">Log In</button>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit">
-</form>
+            </form>
+
+        </div>
+
+    </div>
+    </section>
+
 
 {% endblock content %}
