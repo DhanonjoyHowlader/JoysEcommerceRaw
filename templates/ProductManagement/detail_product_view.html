@@ -22,7 +22,7 @@
                 </p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 {#  updatecart/product_id #}
-                  <button type="button" class="btn btn-outline-primary" href="{% url 'update-cart' search.id  %}" >Add to Cart</button>
+                  <a href="{% url 'update-cart' search.id  %}"><button type="button" class="btn btn-outline-primary">Add to Cart</button></a>
 
               </div>
             </div>
